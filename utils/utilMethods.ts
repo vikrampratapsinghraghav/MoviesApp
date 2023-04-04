@@ -12,3 +12,19 @@ export const getHeaders = (event:Date) => {
           
       }
 }
+
+export const hitApi = async (url:string) => {
+      const event = new Date();
+
+      const fetchResult = await fetch(
+        url,
+        {
+          method: 'GET',
+          headers: getHeaders(event),
+        },
+      );
+      const jsonResult = await fetchResult.json();
+      console.log('Api result',jsonResult);
+      
+      return jsonResult;
+}
