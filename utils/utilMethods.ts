@@ -1,5 +1,8 @@
 import {CLIENT_VALUE,X_API_KEY_VALUE,AUTHORIZATION_VALUE,TERRIOTORY_VALUE,API_VERSION_VALUE,GEOLOCATION_VALUE } from "./constants"
-
+import {
+ 
+  Share,
+} from 'react-native';
 export const getHeaders = (event:Date) => {
     return {  
             'client': CLIENT_VALUE,
@@ -28,3 +31,23 @@ export const hitApi = async (url:string) => {
       
       return jsonResult;
 }
+
+export const onShare = async (movieName:string,details:string) => {
+  try {
+    const result = await Share.share({
+      message:
+        `${movieName}\n${details}`,
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+   
+  }
+};
